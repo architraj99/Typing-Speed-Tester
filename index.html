@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Speed Tester</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="page">
+        
+        <header class="hero-section">
+            <h1>Typing Speed Tester</h1>
+            <p>Practice typing and check your speed, accuracy and mistakes</p>
+        </header>
+
+        <main class="main-layout">
+
+            <section class="typing-card">
+
+                <div class="card-heading">
+                    <h2>Typing Test</h2>
+                    <span id="testStatus">Not Started</span>
+                </div>
+
+                <div class="text-box" id="testBox">
+                    Your typing text will appear here.
+                </div>
+
+                <textarea id="typingInput" placeholder="Start typing here..."></textarea>
+
+                <div class="button-row">
+                    <button id="startBtn">Start Test</button>
+                    <button id="resetBtn">Restart</button>
+                </div>
+
+            </section>
+
+            <section class="stats-card">
+
+                <div class="card-heading">
+                    <h2>Your Stats</h2>
+                    <span>Live</span>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-box">
+                        <span>Time</span>
+                        <strong id="timeValue">60s</strong>
+                    </div>
+
+                    <div class="stat-box">
+                        <span>WPM</span>
+                        <strong id="wpmValue">0</strong>
+                    </div>
+
+                    <div class="stat-box">
+
+                        <span>Accuracy</span>
+                        <strong id="accuracyValue">0%</strong>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <span>Mistakes</span>
+                        <strong id="mistakeValue">0</strong>
+                    </div>
+                    
+                </div>
+
+            </section>
+
+            <section class="result-card">
+
+                <div class="card-heading">
+                    <h2>Result Summary</h2>
+                    <span>Final</span>
+                </div>
+
+                <div class="result-box" id="resultBox">
+                    Complete a test to see your final result.
+                </div>
+
+            </section>
+            
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
