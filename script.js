@@ -10,6 +10,7 @@ let timeValue = document.getElementById("timeValue");
 let wpmValue = document.getElementById("wpmValue");
 let accuracyValue = document.getElementById("accuracyValue");
 let mistakeValue = document.getElementById("mistakeValue");
+let typedCount = document.getElementById("typedCount");
 
 let resultBox = document.getElementById("resultBox");
 
@@ -29,10 +30,13 @@ let paragraphs = [
 
 let currentText = "";
 
+let mistakes = 0;
+
+let totalTyped = 0;
+
 function loadRandomText() {
 
-    let randomIndex =
-        Math.floor(Math.random() * paragraphs.length);
+    let randomIndex = Math.floor(Math.random() * paragraphs.length);
 
     currentText = paragraphs[randomIndex];
 
@@ -46,6 +50,10 @@ function resetTest() {
 
     typingInput.disabled = true;
 
+    mistakes = 0;
+
+    totalTyped = 0;
+
     timeValue.innerText = "60s";
 
     wpmValue.innerText = "0";
@@ -54,11 +62,79 @@ function resetTest() {
 
     mistakeValue.innerText = "0";
 
+    typedCount.innerText = "0";
+
     testStatus.innerText = "Not Started";
 
-    resultBox.innerText = "Complete a test to see your final result.";
+    resultBox.innerText =
+        "Complete a test to see your final result.";
 
 }
+
+function updateAccuracy() {
+
+    if (totalTyped <= 0) {
+
+        accuracyValue.innerText = "0%";
+
+        return;
+    }
+
+    let correctTyped =
+        totalTyped - mistakes;
+
+    let accuracy =
+        (correctTyped / totalTyped) * 100;
+
+    accuracyValue.innerText =
+        Math.max(0, accuracy.toFixed(0)) + "%";
+
+}
+
+function checkTyping() {
+
+    let typedText = typingInput.value;
+
+    totalTyped = typedText.length;
+
+    typedCount.innerText = totalTyped;
+
+    mistakes = 0;
+
+    for (
+        let i = 0;
+        i < typedText.length;
+        i++
+    ) {
+
+        if (typedText[i] !== currentText[i]) {
+
+            mistakes++;
+
+        }
+
+    }
+
+    mistakeValue.innerText = mistakes;
+
+    updateAccuracy();
+
+    if (typedText === currentText) {
+
+        testStatus.innerText =
+            "Completed";
+
+        resultBox.innerText =
+            "You completed the typing paragraph successfully.";
+
+    }
+
+}
+
+typingInput.addEventListener(
+    "input",
+    checkTyping
+);
 
 startBtn.onclick = function () {
 
