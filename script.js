@@ -34,9 +34,16 @@ let mistakes = 0;
 
 let totalTyped = 0;
 
+let timeLeft = 60;
+
+let timerStarted = false;
+
+let timer;
+
 function loadRandomText() {
 
-    let randomIndex = Math.floor(Math.random() * paragraphs.length);
+    let randomIndex =
+        Math.floor(Math.random() * paragraphs.length);
 
     currentText = paragraphs[randomIndex];
 
@@ -46,6 +53,8 @@ function loadRandomText() {
 
 function resetTest() {
 
+    clearInterval(timer);
+
     typingInput.value = "";
 
     typingInput.disabled = true;
@@ -53,6 +62,10 @@ function resetTest() {
     mistakes = 0;
 
     totalTyped = 0;
+
+    timeLeft = 60;
+
+    timerStarted = false;
 
     timeValue.innerText = "60s";
 
@@ -68,6 +81,38 @@ function resetTest() {
 
     resultBox.innerText =
         "Complete a test to see your final result.";
+
+}
+
+function startTimer() {
+
+    timer = setInterval(function () {
+
+        timeLeft--;
+
+        timeValue.innerText =
+            timeLeft + "s";
+
+        if (timeLeft <= 0) {
+
+            clearInterval(timer);
+
+            finishTest();
+
+        }
+
+    }, 1000);
+
+}
+
+function finishTest() {
+
+    typingInput.disabled = true;
+
+    testStatus.innerText = "Finished";
+
+    resultBox.innerText =
+        "Typing test completed successfully.";
 
 }
 
@@ -92,6 +137,14 @@ function updateAccuracy() {
 }
 
 function checkTyping() {
+
+    if (timerStarted === false) {
+
+        startTimer();
+
+        timerStarted = true;
+
+    }
 
     let typedText = typingInput.value;
 
@@ -121,11 +174,15 @@ function checkTyping() {
 
     if (typedText === currentText) {
 
+        clearInterval(timer);
+
         testStatus.innerText =
             "Completed";
 
         resultBox.innerText =
             "You completed the typing paragraph successfully.";
+
+        typingInput.disabled = true;
 
     }
 
