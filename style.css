@@ -75,6 +75,25 @@ body {
     color: #334155;
 }
 
+.character {
+    font-size: 16px;
+}
+
+.correct {
+    color: #16a34a;
+}
+
+.wrong {
+    color: #dc2626;
+    background: #fee2e2;
+    border-radius: 4px;
+}
+
+.active {
+    background: #dbeafe;
+    border-radius: 4px;
+}
+
 .progress-row {
     margin-top: 14px;
     background: #eef2ff;
@@ -169,6 +188,7 @@ button {
 }
 
 @media (max-width: 800px) {
+
     .main-layout {
         grid-template-columns: 1fr;
     }
@@ -180,4 +200,5 @@ button {
     .button-row {
         flex-direction: column;
     }
+
 }

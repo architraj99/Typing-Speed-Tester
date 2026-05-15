@@ -52,7 +52,21 @@ function loadRandomText() {
 
     currentText = paragraphs[randomIndex];
 
-    textBox.innerText = currentText;
+    textBox.innerHTML = "";
+
+    currentText.split("").forEach(function (char) {
+
+        let span = document.createElement("span");
+
+        span.innerText = char;
+
+        span.classList.add("character");
+
+        textBox.appendChild(span);
+
+    });
+
+    textBox.children[0].classList.add("active");
 
 }
 
@@ -215,19 +229,54 @@ function checkTyping() {
 
     let typedText = typingInput.value;
 
+    let characters =
+        textBox.querySelectorAll(".character");
+
     totalTyped = typedText.length;
 
     typedCount.innerText = totalTyped;
 
     mistakes = 0;
 
+    characters.forEach(function (char) {
+
+        char.classList.remove(
+            "correct",
+            "wrong",
+            "active"
+        );
+
+    });
+
     for (
         let i = 0;
-        i < typedText.length;
+        i < characters.length;
         i++
     ) {
 
-        if (typedText[i] !== currentText[i]) {
+        let typedChar = typedText[i];
+
+        if (typedChar == null) {
+
+            characters[i].classList.add(
+                "active"
+            );
+
+            break;
+        }
+
+        if (typedChar === currentText[i]) {
+
+            characters[i].classList.add(
+                "correct"
+            );
+
+        }
+        else {
+
+            characters[i].classList.add(
+                "wrong"
+            );
 
             mistakes++;
 
