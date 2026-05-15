@@ -125,19 +125,26 @@ button {
     background: #e5e7eb;
 }
 
-.stats-grid {
+.stats-grid,
+.extra-stats {
     display: grid;
     gap: 12px;
 }
 
-.stat-box {
+.extra-stats {
+    margin-top: 14px;
+}
+
+.stat-box,
+.extra-box {
     background: #f8fafc;
     border: 1px solid #e5e7eb;
     border-radius: 14px;
     padding: 16px;
 }
 
-.stat-box span {
+.stat-box span,
+.extra-box span {
     display: block;
     color: #64748b;
     font-size: 13px;
@@ -148,12 +155,17 @@ button {
     font-size: 24px;
 }
 
+.extra-box strong {
+    font-size: 22px;
+}
+
 .result-box {
     background: #f8fafc;
     border: 1px solid #e5e7eb;
     border-radius: 14px;
     padding: 18px;
     color: #475569;
+    line-height: 1.7;
 }
 
 @media (max-width: 800px) {

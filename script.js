@@ -12,6 +12,9 @@ let accuracyValue = document.getElementById("accuracyValue");
 let mistakeValue = document.getElementById("mistakeValue");
 let typedCount = document.getElementById("typedCount");
 
+let correctValue = document.getElementById("correctValue");
+let wrongValue = document.getElementById("wrongValue");
+
 let resultBox = document.getElementById("resultBox");
 
 let paragraphs = [
@@ -33,6 +36,8 @@ let currentText = "";
 let mistakes = 0;
 
 let totalTyped = 0;
+
+let correctCharacters = 0;
 
 let timeLeft = 60;
 
@@ -63,6 +68,8 @@ function resetTest() {
 
     totalTyped = 0;
 
+    correctCharacters = 0;
+
     timeLeft = 60;
 
     timerStarted = false;
@@ -76,6 +83,10 @@ function resetTest() {
     mistakeValue.innerText = "0";
 
     typedCount.innerText = "0";
+
+    correctValue.innerText = "0";
+
+    wrongValue.innerText = "0";
 
     testStatus.innerText = "Not Started";
 
@@ -105,14 +116,36 @@ function startTimer() {
 
 }
 
+function calculateWPM() {
+
+    let words =
+        totalTyped / 5;
+
+    let minutes =
+        (60 - timeLeft) / 60;
+
+    if (minutes <= 0) {
+
+        wpmValue.innerText = "0";
+
+        return;
+    }
+
+    let wpm =
+        Math.floor(words / minutes);
+
+    wpmValue.innerText =
+        Math.max(0, wpm);
+
+}
+
 function finishTest() {
 
     typingInput.disabled = true;
 
     testStatus.innerText = "Finished";
 
-    resultBox.innerText =
-        "Typing test completed successfully.";
+    updateFinalResult();
 
 }
 
@@ -133,6 +166,40 @@ function updateAccuracy() {
 
     accuracyValue.innerText =
         Math.max(0, accuracy.toFixed(0)) + "%";
+
+}
+
+function updateCharacterStats() {
+
+    correctCharacters =
+        totalTyped - mistakes;
+
+    if (correctCharacters < 0) {
+
+        correctCharacters = 0;
+
+    }
+
+    correctValue.innerText =
+        correctCharacters;
+
+    wrongValue.innerText =
+        mistakes;
+
+}
+
+function updateFinalResult() {
+
+    resultBox.innerHTML =
+        `
+        <strong>Typing Test Finished</strong>
+        <br><br>
+        WPM: ${wpmValue.innerText}
+        <br>
+        Accuracy: ${accuracyValue.innerText}
+        <br>
+        Mistakes: ${mistakes}
+        `;
 
 }
 
@@ -172,6 +239,10 @@ function checkTyping() {
 
     updateAccuracy();
 
+    updateCharacterStats();
+
+    calculateWPM();
+
     if (typedText === currentText) {
 
         clearInterval(timer);
@@ -179,8 +250,7 @@ function checkTyping() {
         testStatus.innerText =
             "Completed";
 
-        resultBox.innerText =
-            "You completed the typing paragraph successfully.";
+        updateFinalResult();
 
         typingInput.disabled = true;
 
