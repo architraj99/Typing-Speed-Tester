@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fb;
+    background: linear-gradient(to bottom right, #eef2ff, #f8fafc);
     color: #111827;
 }
 
@@ -24,6 +24,9 @@ body {
 .hero-section h1 {
     font-size: 36px;
     margin-bottom: 8px;
+    background: linear-gradient(to right, #4338ca, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-section p {
@@ -44,6 +47,14 @@ body {
     border: 1px solid #e5e7eb;
     border-radius: 18px;
     padding: 20px;
+    transition: 0.25s ease;
+}
+
+.typing-card:hover,
+.stats-card:hover,
+.result-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
 }
 
 .result-card {
@@ -115,10 +126,12 @@ textarea {
     font-size: 15px;
     resize: none;
     outline: none;
+    transition: 0.2s ease;
 }
 
 textarea:focus {
     border-color: #4f46e5;
+    box-shadow: 0 0 0 4px rgba(79,70,229,0.12);
 }
 
 .button-row {
@@ -132,6 +145,12 @@ button {
     padding: 12px;
     border-radius: 12px;
     cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
 }
 
 #startBtn {
@@ -187,18 +206,34 @@ button {
     line-height: 1.7;
 }
 
+.result-box strong {
+    color: #111827;
+}
+
 @media (max-width: 800px) {
 
     .main-layout {
         grid-template-columns: 1fr;
     }
-
     .result-card {
         grid-column: auto;
     }
-
     .button-row {
         flex-direction: column;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .page {
+        padding: 14px;
+    }
+    .hero-section h1 {
+        font-size: 28px;
+    }
+    textarea {
+        height: 130px;
     }
 
 }
