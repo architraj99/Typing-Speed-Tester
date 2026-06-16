@@ -2,6 +2,9 @@
 
 Typing Speed Tester is a website built to test user's speed and accuracy.
 
+Demo Video 
+https://cdn.hackclub.com/019ecfb3-3501-7243-8295-197608672fe1/2026-06-16_14-38-00.mp4
+
 -----------ABOUT THE PROJECT--------------
 
 It currently has these following feautres to monitor your great work LIVE:
