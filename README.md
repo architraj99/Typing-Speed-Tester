@@ -5,6 +5,9 @@ Typing Speed Tester is a website built to test user's speed and accuracy.
 Demo Video 
 https://cdn.hackclub.com/019ecfb3-3501-7243-8295-197608672fe1/2026-06-16_14-38-00.mp4
 
+NOTE - IF EVERY LETTER IS CORRECT AND IN GREEN COLOR AND YOU HAVE ALSO PUT THE FULL STOP THEN TIME WILL STOP AND THE RESULT WILL COME INSTANTL
+IN OTHER HAND IF YOU HAVE DONE ANY ERRORS IN THE SENTENCE THEN YOU WILL HAVE TO WAIT 60 SEC FOR THE RESULT 
+
 -----------ABOUT THE PROJECT--------------
 
 It currently has these following feautres to monitor your great work LIVE:
